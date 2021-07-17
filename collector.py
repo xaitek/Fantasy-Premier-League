@@ -89,7 +89,10 @@ def collect_gw(gw, directory_name, output_dir):
                             row['team'] = teams[fixtures_away[fixture]]
                         row['name'] = name
                         row['position'] = position
-                        row['xP'] = xPoints[id]
+                        if id in xPoints:
+                            row['xP'] = xPoints[id]
+                        else:
+                            row['xP'] = 0.0
                         rows += [row]
 
     fieldnames = ['name', 'position', 'team', 'xP'] + fieldnames
@@ -110,7 +113,7 @@ def merge_all_gws(num_gws, gw_directory):
 def main():
     #collect_all_gws(sys.argv[1], sys.argv[2])
     merge_all_gws(int(sys.argv[1]), sys.argv[2])
-    #collect_gw(39, sys.argv[1], sys.argv[2])
+    #collect_gw(35, sys.argv[1], sys.argv[2])
 
 if __name__ == '__main__':
     main()
